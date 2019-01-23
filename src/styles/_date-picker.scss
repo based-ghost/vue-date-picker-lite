@@ -1,0 +1,242 @@
+﻿$dp-clear-icon-color-hover: #e74c3c !default;
+$dp-calendar-icon-color-hover: #3273dc !default;
+$dp-calendar-icon-color-active: #3273dc !default;
+
+$dp-calendar-wrapper-bg: #fff !default;
+$dp-calendar-header-bg: #3273dc !default;
+$dp-calendar-header-color: #fff !default;
+
+$dp-calendar-border-radius: 4px !default;
+$dp-calendar-box-shadow: 0 8px 8px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1) !default;
+
+$dp-day-color: #363636 !default;
+$dp-day-border-color: #fff !default;
+$dp-day-bg-hover: #eee !default;
+$dp-day-selected-bg: #3273dc !default;
+$dp-day-selected-color: #fff !default;
+$dp-today-border-color: #3273dc !default;
+$dp-not-in-month-color: #c8c8c8 !default;
+
+input.date-picker-input {
+    &[readonly] {
+        cursor: default;
+    }
+
+    &:not([disabled]) ~ {
+        .clear-date-icon, 
+        .toggle-calendar-icon {
+            pointer-events: visible !important;
+            cursor: pointer;
+        }
+
+        .clear-date-icon:hover {
+            color: $dp-clear-icon-color-hover !important;
+        }
+
+        .toggle-calendar-icon:hover {
+            color: $dp-calendar-icon-color-hover !important;
+        }
+    }
+}
+
+span {
+    &.clear-date-icon i span,
+    &.toggle-calendar-icon i span {
+        font-size: 1.35rem;
+        font-weight: bold;
+    }
+}
+
+.clear-date-icon {
+    margin-right: 2rem;
+}
+
+.calendar-icon-active {
+    color: $dp-calendar-icon-color-active;
+}
+
+.calendar-wrapper {
+    opacity: 1;
+    width: 290px;
+    display: block;
+    padding-top: 4px;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 100;
+
+    .calendar {
+        display: flex;
+        width: 100%;
+        position: absolute;
+        background-color: $dp-calendar-wrapper-bg;
+        flex-direction: column;
+        -webkit-box-shadow: $dp-calendar-box-shadow;
+        box-shadow: $dp-calendar-box-shadow;
+        -webkit-border-radius: $dp-calendar-border-radius;
+        border-radius: $dp-calendar-border-radius;
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            color: $dp-calendar-header-color !important;
+            padding: 0.1rem 0.4rem;
+            background-color: $dp-calendar-header-bg;
+            -webkit-border-top-right-radius: $dp-calendar-border-radius;
+            border-top-right-radius: $dp-calendar-border-radius;
+            -webkit-border-top-left-radius: $dp-calendar-border-radius;
+            border-top-left-radius: $dp-calendar-border-radius;
+
+            span {
+                cursor: default;
+                flex-grow: 1;
+                font-weight: 700;
+                font-size: 1.05rem;
+                text-align: center;
+                padding-top: .55em;
+                padding-bottom: .5em;
+            }
+
+            a {
+                cursor: pointer;
+                padding-left: 0.25em;
+                padding-right: 0.25em;
+                color: $dp-calendar-header-color !important;
+                font-size: 1.8rem;
+                font-weight: 600;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                flex-grow: 0;
+                padding-bottom: .25em;
+                opacity: 1;
+                -webkit-transition: opacity .15s ease-in;
+                transition: opacity .15s ease-in;
+
+                &:hover {
+                    opacity: .7;
+                }
+            }
+        }
+
+        .weekdays-header {
+            display: flex;
+
+            div {
+                width: 14.28%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0.4rem 0;
+                border-width: 1px;
+                border-style: solid;
+                border-color: $dp-day-border-color;
+                font-weight: 700;
+                cursor: default;
+            }
+        }
+
+        .week {
+            display: flex;
+
+            &:last-child {
+                margin-bottom: .175rem;
+            }
+
+            .day {
+                width: 14.28%;
+                height: 35px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: $dp-day-color;
+                border: solid 1px;
+                border-style: solid;
+                border-color: $dp-day-border-color;
+                cursor: pointer;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+                margin: .1rem;
+                -webkit-transition: all .15s ease;
+                transition: all .15s ease;
+
+                &:hover {
+                    background-color: #eee;
+                    border-color: #eee;
+                }
+
+                &.selected {
+                    font-weight: 600;
+                    color: $dp-day-selected-color !important;
+                    border-color: $dp-day-selected-bg;
+                    background-color: $dp-day-selected-bg;
+
+                    &:hover {
+                        background-color: $dp-day-selected-bg;
+                        border-color: $dp-day-selected-bg;
+                    }
+                }
+
+                &.today {
+                    border-color: $dp-today-border-color;
+
+                    &:hover {
+                        border-color: $dp-today-border-color;
+                    }
+                }
+
+                &.not-in-month {
+                    cursor: default;
+                    color: $dp-not-in-month-color !important;
+                    border-color: $dp-day-border-color !important;
+                    background-color: #fff !important;
+                }
+            }
+        }
+    }
+}
+
+.default-wrapper {
+    clear: both;
+    box-sizing: border-box;
+    position: relative;
+    text-align: left;
+}
+
+.default-input {
+    background-color: white;
+    max-width: 100%;
+    width: 100%;
+    padding: 0.75em 0.5em;
+    align-items: center;
+    border: 1px solid #dbdbdb;
+    color: initial;
+    position: relative;
+    text-shadow: none;
+    display: inline-flex;
+    justify-content: flex-start;
+    margin: 0;
+    vertical-align: top;
+
+    &[disabled] {
+        cursor: not-allowed;
+
+        ~ span.default-icon {
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+    }
+}
+
+.default-icon {
+    top: 0;
+    right: 0;
+    height: 2.25em;
+    width: 2.25em;
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    color: #dbdbdb;
+    position: absolute;
+}
